@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>52 Gates — Reflections on Living</title>
+<meta name="description" content="Step through each gate. Find stillness in motion. Live awake. A book of 52 short reflections by Rabbi Ben Newman.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500&family=Marcellus&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #F1E9D6;
+    --cream-soft: #EDE3CC;
+    --cream-deep: #E5D9BD;
+    --ink: #1A1611;
+    --ink-soft: #2D2620;
+    --ink-faded: #5A4F44;
+    --stone: #8C7F6E;
+    --accent: #6B4F35;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-weight: 400;
+    font-size: 19px;
+    line-height: 1.65;
+    color: var(--ink);
+    background: var(--cream);
+    /* subtle paper texture via layered radial noise */
+    background-image:
+      radial-gradient(ellipse at top, rgba(255,255,255,0.4), transparent 60%),
+      radial-gradient(circle at 20% 80%, rgba(139,127,110,0.05), transparent 40%),
+      radial-gradient(circle at 80% 20%, rgba(139,127,110,0.04), transparent 40%);
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* grain texture overlay */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 1;
+    opacity: 0.4;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4'/%3E%3CfeColorMatrix values='0 0 0 0 0.15 0 0 0 0 0.13 0 0 0 0 0.1 0 0 0 0.12 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    mix-blend-mode: multiply;
+  }
+
+  h1, h2, h3 {
+    font-family: 'Marcellus', 'Cormorant Garamond', serif;
+    font-weight: 400;
+    color: var(--ink);
+    letter-spacing: 0.02em;
+  }
+
+  .container {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 0 32px;
+    position: relative;
+    z-index: 2;
+  }
+
+  /* ---------- NAV ---------- */
+  nav {
+    position: relative;
+    z-index: 10;
+    padding: 32px 0 0;
+  }
+  nav .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    font-family: 'Marcellus', serif;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    font-size: 12px;
+  }
+  nav a {
+    color: var(--ink-soft);
+    text-decoration: none;
+    margin-left: 28px;
+    transition: color 0.3s ease;
+  }
+  nav a:hover { color: var(--accent); }
+  nav .brand {
+    font-size: 13px;
+    color: var(--ink);
+    letter-spacing: 0.22em;
+  }
+  nav .links { display: flex; }
+
+  /* ---------- HERO ---------- */
+  .hero {
+    padding: 80px 0 120px;
+    text-align: center;
+    position: relative;
+  }
+
+  .hero-cover {
+    max-width: 340px;
+    width: 70%;
+    margin: 0 auto 56px;
+    display: block;
+    /* subtle paper shadow */
+    box-shadow:
+      0 1px 1px rgba(26, 22, 17, 0.05),
+      0 4px 10px rgba(26, 22, 17, 0.08),
+      0 20px 40px rgba(26, 22, 17, 0.1);
+    transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .hero-cover:hover { transform: translateY(-4px); }
+
+  .hero h1 {
+    font-size: clamp(48px, 7vw, 76px);
+    line-height: 1.05;
+    margin-bottom: 8px;
+    letter-spacing: 0.04em;
+  }
+  .hero .subtitle {
+    font-family: 'Marcellus', serif;
+    text-transform: uppercase;
+    letter-spacing: 0.22em;
+    font-size: 14px;
+    color: var(--ink-faded);
+    margin-bottom: 40px;
+  }
+  .hero .tagline {
+    font-style: italic;
+    font-size: clamp(22px, 3vw, 28px);
+    line-height: 1.4;
+    color: var(--ink-soft);
+    max-width: 520px;
+    margin: 0 auto 32px;
+    font-weight: 400;
+  }
+  .hero .lede {
+    font-size: 20px;
+    color: var(--ink-soft);
+    max-width: 540px;
+    margin: 0 auto 48px;
+    line-height: 1.65;
+  }
+
+  /* ---------- BRUSH DIVIDER ---------- */
+  .divider {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 100px 0 60px;
+    opacity: 0.7;
+  }
+  .divider svg {
+    width: 120px;
+    height: 12px;
+  }
+
+  /* ---------- BUTTONS ---------- */
+  .btn {
+    display: inline-block;
+    font-family: 'Marcellus', serif;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    font-size: 13px;
+    padding: 16px 36px;
+    border: 1px solid var(--ink);
+    color: var(--ink);
+    background: transparent;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.4s ease;
+    position: relative;
+    overflow: hidden;
+  }
+  .btn::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--ink);
+    transform: scaleX(0);
+    transform-origin: left center;
+    transition: transform 0.5s cubic-bezier(0.65, 0, 0.35, 1);
+    z-index: -1;
+  }
+  .btn:hover { color: var(--cream); }
+  .btn:hover::before { transform: scaleX(1); }
+  .btn.primary {
+    background: var(--ink);
+    color: var(--cream);
+  }
+  .btn.primary::before { background: var(--accent); }
+  .btn.primary:hover { color: var(--cream); }
+
+  /* ---------- SECTIONS ---------- */
+  section {
+    padding: 80px 0;
+    position: relative;
+    z-index: 2;
+  }
+
+  .section-label {
+    font-family: 'Marcellus', serif;
+    text-transform: uppercase;
+    letter-spacing: 0.3em;
+    font-size: 11px;
+    color: var(--ink-faded);
+    text-align: center;
+    margin-bottom: 24px;
+  }
+  .section-title {
+    font-size: clamp(36px, 5vw, 48px);
+    text-align: center;
+    margin-bottom: 48px;
+    letter-spacing: 0.02em;
+  }
+
+  /* ---------- ABOUT BOOK ---------- */
+  .about-book p {
+    margin-bottom: 24px;
+    color: var(--ink-soft);
+  }
+  .about-book p:first-of-type {
+    font-size: 22px;
+    line-height: 1.55;
+    color: var(--ink);
+  }
+  .about-book p:first-of-type::first-letter {
+    font-family: 'Marcellus', serif;
+    font-size: 56px;
+    float: left;
+    line-height: 1;
+    padding-right: 10px;
+    padding-top: 4px;
+    color: var(--accent);
+  }
+  .cta-row {
+    text-align: center;
+    margin-top: 48px;
+  }
+  .cta-row .btn + .btn { margin-left: 16px; }
+  .price-note {
+    font-style: italic;
+    color: var(--ink-faded);
+    font-size: 16px;
+    margin-top: 16px;
+  }
+
+  /* ---------- COMPANION ---------- */
+  .companion {
+    background: var(--cream-soft);
+    margin: 60px -32px;
+    padding: 80px 32px;
+    border-top: 1px solid rgba(26, 22, 17, 0.08);
+    border-bottom: 1px solid rgba(26, 22, 17, 0.08);
+  }
+  .companion .badge {
+    display: inline-block;
+    font-family: 'Marcellus', serif;
+    text-transform: uppercase;
+    letter-spacing: 0.25em;
+    font-size: 11px;
+    color: var(--accent);
+    border: 1px solid var(--accent);
+    padding: 6px 14px;
+    margin-bottom: 24px;
+  }
+  .companion h2 {
+    font-size: clamp(32px, 4vw, 42px);
+    margin-bottom: 24px;
+  }
+  .companion p {
+    color: var(--ink-soft);
+    margin-bottom: 20px;
+  }
+  .companion-features {
+    list-style: none;
+    margin: 32px 0;
+    padding: 0;
+  }
+  .companion-features li {
+    padding: 12px 0 12px 32px;
+    position: relative;
+    color: var(--ink-soft);
+    border-bottom: 1px solid rgba(26, 22, 17, 0.08);
+  }
+  .companion-features li:last-child { border-bottom: none; }
+  .companion-features li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 22px;
+    width: 18px;
+    height: 1px;
+    background: var(--accent);
+  }
+
+  /* ---------- GROUPS ---------- */
+  .groups blockquote {
+    font-style: italic;
+    font-size: 24px;
+    line-height: 1.5;
+    color: var(--ink);
+    text-align: center;
+    margin: 48px auto;
+    max-width: 600px;
+    position: relative;
+  }
+  .groups blockquote::before,
+  .groups blockquote::after {
+    font-family: 'Marcellus', serif;
+    font-style: normal;
+    color: var(--accent);
+    opacity: 0.6;
+    font-size: 40px;
+    line-height: 0;
+    vertical-align: -20px;
+  }
+  .groups blockquote::before { content: '"'; margin-right: 8px; }
+  .groups blockquote::after { content: '"'; margin-left: 8px; }
+  .groups p { color: var(--ink-soft); margin-bottom: 20px; }
+
+  /* ---------- FORM ---------- */
+  .register-form {
+    margin-top: 56px;
+    background: var(--cream-deep);
+    padding: 48px 40px;
+    border: 1px solid rgba(26, 22, 17, 0.12);
+  }
+  .register-form h3 {
+    font-size: 26px;
+    margin-bottom: 8px;
+    text-align: center;
+  }
+  .register-form .form-intro {
+    text-align: center;
+    color: var(--ink-faded);
+    font-style: italic;
+    margin-bottom: 32px;
+    font-size: 17px;
+  }
+  .form-row {
+    margin-bottom: 20px;
+  }
+  .form-row.two {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+  @media (max-width: 540px) {
+    .form-row.two { grid-template-columns: 1fr; }
+  }
+  label {
+    display: block;
+    font-family: 'Marcellus', serif;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    font-size: 11px;
+    color: var(--ink-faded);
+    margin-bottom: 8px;
+  }
+  input, select, textarea {
+    width: 100%;
+    background: var(--cream);
+    border: 1px solid rgba(26, 22, 17, 0.2);
+    padding: 12px 14px;
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 17px;
+    color: var(--ink);
+    transition: border-color 0.3s ease;
+  }
+  input:focus, select:focus, textarea:focus {
+    outline: none;
+    border-color: var(--accent);
+    background: #FFF;
+  }
+  textarea { resize: vertical; min-height: 80px; }
+  .form-submit {
+    text-align: center;
+    margin-top: 32px;
+  }
+  .form-note {
+    font-size: 14px;
+    color: var(--ink-faded);
+    text-align: center;
+    margin-top: 20px;
+    font-style: italic;
+  }
+
+  /* ---------- ABOUT BEN ---------- */
+  .about-ben {
+    text-align: center;
+    padding-top: 100px;
+  }
+  .about-ben p {
+    color: var(--ink-soft);
+    max-width: 580px;
+    margin: 0 auto 20px;
+  }
+  .about-ben p:first-of-type {
+    font-size: 22px;
+    line-height: 1.55;
+    color: var(--ink);
+  }
+
+  /* ---------- FOOTER ---------- */
+  footer {
+    margin-top: 120px;
+    padding: 56px 0 48px;
+    text-align: center;
+    border-top: 1px solid rgba(26, 22, 17, 0.1);
+  }
+  footer .torii {
+    width: 36px;
+    margin: 0 auto 24px;
+    opacity: 0.5;
+  }
+  footer p {
+    font-family: 'Marcellus', serif;
+    text-transform: uppercase;
+    letter-spacing: 0.25em;
+    font-size: 11px;
+    color: var(--ink-faded);
+    margin-bottom: 8px;
+  }
+  footer a {
+    color: var(--ink-faded);
+    text-decoration: none;
+    margin: 0 12px;
+    transition: color 0.3s ease;
+  }
+  footer a:hover { color: var(--accent); }
+
+  /* ---------- ANIMATIONS ---------- */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .fade-up {
+    opacity: 0;
+    animation: fadeUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+  .hero-cover { animation: fadeUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+  .hero h1 { animation: fadeUp 1s cubic-bezier(0.16, 1, 0.3, 1) 0.2s forwards; opacity: 0; }
+  .hero .subtitle { animation: fadeUp 1s cubic-bezier(0.16, 1, 0.3, 1) 0.35s forwards; opacity: 0; }
+  .hero .tagline { animation: fadeUp 1s cubic-bezier(0.16, 1, 0.3, 1) 0.5s forwards; opacity: 0; }
+  .hero .lede { animation: fadeUp 1s cubic-bezier(0.16, 1, 0.3, 1) 0.65s forwards; opacity: 0; }
+  .hero .cta-row { animation: fadeUp 1s cubic-bezier(0.16, 1, 0.3, 1) 0.8s forwards; opacity: 0; }
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width: 640px) {
+    body { font-size: 18px; }
+    .container { padding: 0 24px; }
+    nav .container { flex-direction: column; gap: 16px; align-items: center; }
+    nav a { margin: 0 12px; }
+    nav .links { flex-wrap: wrap; justify-content: center; }
+    .hero { padding: 48px 0 80px; }
+    .companion { margin-left: -24px; margin-right: -24px; padding-left: 24px; padding-right: 24px; }
+    .register-form { padding: 32px 24px; }
+    .cta-row .btn + .btn { margin-left: 0; margin-top: 16px; display: block; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="container">
+    <div class="brand">52 GATES</div>
+    <div class="links">
+      <a href="#book">The Book</a>
+      <a href="#companion">Companion</a>
+      <a href="#groups">Groups</a>
+      <a href="#about">About</a>
+    </div>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="container">
+    <img src="cover.png" alt="52 Gates: Reflections on Living, by Ben Newman" class="hero-cover">
+    <h1>52 Gates</h1>
+    <div class="subtitle">Reflections on Living</div>
+    <div class="tagline">Step through each gate.<br>Find stillness in motion. Live awake.</div>
+    <div class="lede">Fifty-two short reflections — one for each week of the year, or whenever life asks you to pause. A doorway into mindfulness, mystery, and the sacred ordinariness of being here.</div>
+    <div class="cta-row">
+      <a href="https://www.amazon.com/52-Gates-Reflections-Ben-Newman/dp/B0FXB3M3LB" class="btn primary" target="_blank" rel="noopener">Read the Book</a>
+      <a href="#groups" class="btn">Start a Group</a>
+    </div>
+  </div>
+</section>
+
+<div class="divider" aria-hidden="true">
+  <svg viewBox="0 0 120 12" fill="none">
+    <path d="M2 6 Q 30 2, 60 6 T 118 6" stroke="#5A4F44" stroke-width="1.5" stroke-linecap="round" opacity="0.5"/>
+  </svg>
+</div>
+
+<section class="about-book" id="book">
+  <div class="container">
+    <div class="section-label">The Book</div>
+    <h2 class="section-title">A Year of Doorways</h2>
+    <p>Each gate is a short reflection — a moment of awareness, a breath of calm, a glimpse of wonder. The pages are meant to be savored slowly: one gate each week, or whenever life asks you to pause. Together, the fifty-two form a year of doorways.</p>
+    <p>The Gates draw on contemplative traditions across boundaries — Jewish mysticism, Buddhist practice, the wisdom of stillness and presence — and meet readers wherever they are. You don't need a tradition to begin. You only need a moment, a breath, a willingness to step through.</p>
+    <p>Some readers move through one gate at a time, in order. Others let the book fall open to whatever the day asks for. Some return again and again to the same gate. There is no wrong way to read this book.</p>
+    <div class="cta-row">
+      <a href="https://www.amazon.com/52-Gates-Reflections-Ben-Newman/dp/B0FXB3M3LB" class="btn primary" target="_blank" rel="noopener">Buy on Amazon</a>
+      <div class="price-note">Paperback $13 · Kindle $9.99</div>
+    </div>
+  </div>
+</section>
+
+<section class="companion" id="companion">
+  <div class="container">
+    <div style="text-align: center;">
+      <div class="badge">Now Available</div>
+    </div>
+    <h2 class="section-title">52 Gates: A Practitioner's Companion</h2>
+    <p>For those who want to work with the Gates more deeply — alone or in a group — a comprehensive companion volume.</p>
+    <ul class="companion-features">
+      <li>The complete text of the 52 Gates</li>
+      <li>Discussion questions for each Gate, designed for small groups</li>
+      <li>Journaling prompts for individual practice</li>
+      <li>A brief meditation tuned to each Gate, drawn from contemplative traditions</li>
+      <li>A facilitator's guide for those gathering people to read the Gates together</li>
+    </ul>
+    <p>Whether you are leading a group, joining one, or simply walking through the Gates on your own, this companion is built to support the practice.</p>
+    <div class="cta-row">
+      <a href="https://www.amazon.com/dp/B0H28V84RC" class="btn primary" target="_blank" rel="noopener">Get the Companion</a>
+    </div>
+  </div>
+</section>
+
+<section class="groups" id="groups">
+  <div class="container">
+    <div class="section-label">For Groups</div>
+    <h2 class="section-title">Reading Together</h2>
+    <p>Something different happens when the Gates are explored in conversation. A line you might have passed over can open completely when someone else speaks it from their own life. And when you speak, you often find yourself saying what you didn't know you knew.</p>
+    <blockquote>The Gates are less like ideas to understand and more like doors. We walk through them together.</blockquote>
+    <p>Groups are forming around the world — in homes, yoga studios, retreat centers, online. There is no certification required. No special training. Just a few people, a quiet hour, and a willingness to listen.</p>
+    <p>Register your group below and you'll receive an invitation to the seasonal Zoom — four gatherings a year for facilitators to share what's working, ask questions, and explore one Gate together in depth.</p>
+  </div>
+</section>
+
+<section id="register">
+  <div class="container">
+    <div class="register-form">
+      <h3>Register Your Group</h3>
+      <p class="form-intro">Tell us where the Gates are gathering.</p>
+      <!--
+        FORM SETUP — when ready to capture submissions:
+        1. Create a free form at https://formspree.io (or https://web3forms.com)
+        2. They give you an endpoint URL.
+        3. Replace  action="#"  below with that URL, e.g.
+             action="https://formspree.io/f/abcdwxyz"
+        4. Delete the <script> block at the very bottom of this file
+           (the mailto handler) so the form posts natively to Formspree.
+        Until then, the form opens the visitor's email client addressed to you.
+      -->
+      <form action="#" method="POST" id="registerForm">
+        <div class="form-row two">
+          <div>
+            <label for="name">Your Name</label>
+            <input type="text" id="name" name="name" required>
+          </div>
+          <div>
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required>
+          </div>
+        </div>
+        <div class="form-row two">
+          <div>
+            <label for="city">City or Region</label>
+            <input type="text" id="city" name="city" placeholder="e.g. Brooklyn, NY">
+          </div>
+          <div>
+            <label for="schedule">Meeting Schedule</label>
+            <input type="text" id="schedule" name="schedule" placeholder="e.g. Sundays, biweekly">
+          </div>
+        </div>
+        <div class="form-row">
+          <label for="context">Where do you meet? (optional)</label>
+          <input type="text" id="context" name="context" placeholder="Yoga studio, living room, Zoom, synagogue, retreat center...">
+        </div>
+        <div class="form-row">
+          <label for="notes">Anything you'd like to share (optional)</label>
+          <textarea id="notes" name="notes"></textarea>
+        </div>
+        <div class="form-submit">
+          <button type="submit" class="btn primary">Register</button>
+        </div>
+        <p class="form-note">You'll receive an invitation to the seasonal Zoom and occasional notes from Ben.</p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<section class="about-ben" id="about">
+  <div class="container">
+    <div class="section-label">About the Author</div>
+    <h2 class="section-title">Ben Newman</h2>
+    <p>Ben Newman is a rabbi, teacher, writer, and musician whose work bridges ancient wisdom and contemporary life.</p>
+    <p>He is co-rabbi of Pleasantville Community Synagogue in New York and the author of <em>AI for Clergy</em> and <em>The 10 Pathways</em>. His writing weaves Jewish mysticism with Buddhist practice, contemplative inquiry, and the texture of ordinary life. He lives in Dobbs Ferry, New York.</p>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <svg class="torii" viewBox="0 0 40 40" aria-hidden="true">
+      <path d="M4 12 Q 20 8, 36 12 L 34 14 L 30 14 L 30 32 L 26 32 L 26 14 L 14 14 L 14 32 L 10 32 L 10 14 L 6 14 Z" fill="#1A1611" opacity="0.6"/>
+    </svg>
+    <p>© 2026 Ben Newman</p>
+    <p style="margin-top: 16px;">
+      <a href="mailto:rabbibennewman@gmail.com">Contact</a>
+      <span style="opacity: 0.4;">·</span>
+      <a href="https://www.amazon.com/52-Gates-Reflections-Ben-Newman/dp/B0FXB3M3LB" target="_blank" rel="noopener">Amazon</a>
+    </p>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('registerForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const get = id => document.getElementById(id).value.trim();
+    const name = get('name'), email = get('email'), city = get('city'),
+          schedule = get('schedule'), context = get('context'), notes = get('notes');
+
+    const subject = `52 Gates group registration${name ? ': ' + name : ''}`;
+    const body =
+      `Name: ${name}\n` +
+      `Email: ${email}\n` +
+      `City or Region: ${city}\n` +
+      `Meeting Schedule: ${schedule}\n` +
+      `Meeting Place: ${context}\n\n` +
+      `Notes:\n${notes}\n`;
+
+    window.location.href =
+      'mailto:rabbibennewman@gmail.com' +
+      '?subject=' + encodeURIComponent(subject) +
+      '&body=' + encodeURIComponent(body);
+  });
+</script>
+
+</body>
+</html>
