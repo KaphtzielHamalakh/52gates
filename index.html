@@ -553,16 +553,16 @@
       <h3>Register Your Group</h3>
       <p class="form-intro">Tell us where the Gates are gathering.</p>
       <!--
-        FORM SETUP — when ready to capture submissions:
-        1. Create a free form at https://formspree.io (or https://web3forms.com)
-        2. They give you an endpoint URL.
-        3. Replace  action="#"  below with that URL, e.g.
-             action="https://formspree.io/f/abcdwxyz"
-        4. Delete the <script> block at the very bottom of this file
-           (the mailto handler) so the form posts natively to Formspree.
-        Until then, the form opens the visitor's email client addressed to you.
+        FORM IS WIRED TO WEB3FORMS.
+        Paste your Web3Forms access key into the value="" attribute below
+        on the line marked PASTE_KEY_HERE. That's the only edit you need.
       -->
-      <form action="#" method="POST" id="registerForm">
+      <form action="https://api.web3forms.com/submit" method="POST" id="registerForm">
+        <input type="hidden" name="access_key" value="123a0576-d887-4a99-a377-899015df42a1">
+        <input type="hidden" name="subject" value="New 52 Gates Group Registration">
+        <input type="hidden" name="from_name" value="52 Gates Website">
+        <!-- honeypot for bots; leave blank, visitors won't see it -->
+        <input type="checkbox" name="botcheck" style="display:none;" tabindex="-1" autocomplete="off">
         <div class="form-row two">
           <div>
             <label for="name">Your Name</label>
@@ -622,29 +622,6 @@
     </p>
   </div>
 </footer>
-
-<script>
-  document.getElementById('registerForm').addEventListener('submit', function(e) {
-    e.preventDefault();
-    const get = id => document.getElementById(id).value.trim();
-    const name = get('name'), email = get('email'), city = get('city'),
-          schedule = get('schedule'), context = get('context'), notes = get('notes');
-
-    const subject = `52 Gates group registration${name ? ': ' + name : ''}`;
-    const body =
-      `Name: ${name}\n` +
-      `Email: ${email}\n` +
-      `City or Region: ${city}\n` +
-      `Meeting Schedule: ${schedule}\n` +
-      `Meeting Place: ${context}\n\n` +
-      `Notes:\n${notes}\n`;
-
-    window.location.href =
-      'mailto:rabbibennewman@gmail.com' +
-      '?subject=' + encodeURIComponent(subject) +
-      '&body=' + encodeURIComponent(body);
-  });
-</script>
 
 </body>
 </html>
