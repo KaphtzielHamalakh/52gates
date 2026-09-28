@@ -478,6 +478,16 @@
     color: var(--ink);
   }
 
+  /* ---------- MORE BOOKS ---------- */
+  .book-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 44px; }
+  .book-card { text-align: center; }
+  .book-card img { width: min(100%, 260px); aspect-ratio: 2 / 3; object-fit: contain; display: block; margin: 0 auto 24px; box-shadow: 0 12px 30px rgba(26,22,17,.12); background: #fff; }
+  .book-card h3 { font-size: 28px; line-height: 1.25; }
+  .book-card .book-subtitle { font-family: 'Marcellus', serif; text-transform: uppercase; letter-spacing: .18em; font-size: 12px; margin: 6px 0 15px; color: var(--ink-faded); }
+  .book-card p { color: var(--ink-soft); }
+  .book-card .book-link { display: inline-block; margin-top: 18px; font-family: 'Marcellus', serif; letter-spacing: .1em; font-size: 13px; color: var(--accent); text-decoration-thickness: 1px; text-underline-offset: 4px; }
+  @media (max-width: 640px) { .book-grid { grid-template-columns: 1fr; gap: 64px; } }
+
   /* ---------- FOOTER ---------- */
   footer {
     margin-top: 120px;
@@ -615,6 +625,7 @@
     <div class="links">
       <a href="#book">The Book</a>
       <a href="#companion">Companion</a>
+      <a href="#more-books">More Books</a>
       <a href="#groups">Groups</a>
       <a href="#about">About</a>
     </div>
@@ -681,6 +692,29 @@
     <p>Whether you are leading a group, joining one, or simply walking through the Gates on your own, this companion is built to support the practice.</p>
     <div class="cta-row">
       <a href="https://www.amazon.com/dp/B0H28V84RC" class="btn primary" target="_blank" rel="noopener">Get the Companion</a>
+    </div>
+  </div>
+</section>
+
+<section class="more-books" id="more-books">
+  <div class="container">
+    <div class="section-label">Also by Ben Newman</div>
+    <h2 class="section-title">More Books</h2>
+    <div class="book-grid">
+      <article class="book-card">
+        <a href="/the-next-right-thing/" aria-label="Explore The Next Right Thing: 74 Offerings"><img src="/next-right-thing-cover.jpeg" alt="The Next Right Thing: 74 Offerings book cover" loading="lazy"></a>
+        <h3>The Next Right Thing</h3>
+        <p class="book-subtitle">74 Offerings</p>
+        <p>Seventy-four short offerings on the practice of finding one clear step at a time.</p>
+        <a class="book-link" href="/the-next-right-thing/">Explore the book →</a>
+      </article>
+      <article class="book-card">
+        <a href="/life-working/" aria-label="Explore Life Working: 36 Passages"><img src="/life-working-cover.jpeg" alt="Life Working: 36 Passages book cover" loading="lazy"></a>
+        <h3>Life Working</h3>
+        <p class="book-subtitle">36 Passages</p>
+        <p>Thirty-six passages for reading slowly and returning to through the turns of life.</p>
+        <a class="book-link" href="/life-working/">Explore the book →</a>
+      </article>
     </div>
   </div>
 </section>
